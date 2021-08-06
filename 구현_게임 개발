@@ -1,0 +1,62 @@
+#p118 게임 개발
+
+n,m=list(map(int, input().split()))
+x,y,direction=map(int, input().split())
+
+#direction이 dx, dy의 인덱스가 됨 (0,1,2,3)
+dx=[0,1,0,-1]
+dy=[-1,0,1,0]
+
+#방문 여부 맵 생성 / 미방문=0, 방문=1
+visit = [[0]*m for _ in range(n)]
+
+#시작 위치 방문 처리
+visit[x][y]=1
+
+#맵 생성
+array=[]
+for i in range(n):
+  array.append(list(map(int, input().split())))
+
+print(array)
+
+#회전 함수
+def turn_left():
+  global direction
+  if direction==0:
+    direction+=3
+  else:
+    direction-=1
+
+#문제: '방문한 칸의 수'를  출력하라
+count=1
+turn_time=0
+while(True):
+  turn_left()
+  #다음 방문 예정 좌표: nx, ny
+  nx=x+dx[direction]
+  ny=y+dy[direction]
+  
+  #방문 안한 육지
+  if visit[nx][ny]==0 and array[nx][ny]==0:
+    visit[nx][ny]=1
+    x=nx
+    y=ny
+    count+=1
+    turn_time=0
+
+  #방문 했거나 바다일 경우
+  else:
+    turn_time+=1
+
+  if turn_time==4:
+    nx=x-dx[direction]
+    ny=y-dy[direction]
+    if array[nx][ny]==1:
+      break
+    else:
+      x=nx
+      y=ny
+    turn_time=0
+
+print(count)

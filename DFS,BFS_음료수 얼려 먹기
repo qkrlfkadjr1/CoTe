@@ -1,0 +1,36 @@
+#상하좌우로 연결된 경우 하나의 덩어리로 처리
+#상하좌우 관계식, dfs or bfs 사용
+#(1,1)부터 (n,m)까지 각 좌표마다 함수 적용 (visited와 동일한 작동, 각 덩어리마다 count 셀 것)
+# *dfx(x,y)에서, x축이 행이고 y축이 열이 되어야 한다. 임의로 바꿀 순 없으며, 바꾸려면 모든 변수 고려해서 잘 바꿔야 함
+
+n,m=map(int,input().split())
+
+x,y=(0,0)
+
+graph=[]
+for i in range(n):
+	graph.append(list(map(int,input())))
+
+print(graph)
+def dfs(x, y):
+	if x<0 or x>n-1 or y<0 or y>m-1:
+		return False
+	if graph[x][y]==0:
+		graph[x][y]=1
+		dfs(x-1,y)
+		dfs(x+1,y)
+		dfs(x,y+1)
+		dfs(x,y-1)
+		return True
+	else:
+		return False
+
+count=0
+
+for i in range(n):
+	for j in range(m):
+		if dfs(i,j)==True:
+			count+=1
+
+
+print(count)

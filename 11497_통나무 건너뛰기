@@ -1,0 +1,23 @@
+통나무 간격을 가장 작게 만드는 아이디어를 떠올리지 못함.
+기본 정렬 시 처음과 마지막의 통나무 사이의 간격 또한 고려해야 하기 때문에 적절치 못하다는 것까지 파악.
+가장 큰 것을 가운데에 두고 양 옆으로 번갈아 점점 줄여나가는 아이디어부터 생각 못함.
+위의 아이디어를 알고 난 후에도 문제풀이 방안 생각 못해냄.
+굳이 정렬 자체를 구현해낼 필요가 없다는 것을 알아냄.
+양 옆에서부터 작은 수들을 차례대로 나열했을 경우, 결국 인접한 수들은 인덱스 차이가 2씩 차이나는 수들임을 알게 됨.
+이를 이용하여 각 인덱스 차이가 2씩 나는 수들의 차이의 절댓값중 최댓값을 구하는 문제라는 것을 파악함.
+
+t=int(input())
+result=[]
+for ii in range(t):
+	n=int(input())
+	data=list(map(int, input().split()))
+	abstract=[]
+	data.sort()
+	for i in range(len(data)-2):
+		abstract.append(abs(data[i]-data[i+2]))
+	
+	abstract.sort()
+	result.append(abstract[-1])
+
+for i in range(t):
+	print(result[i])

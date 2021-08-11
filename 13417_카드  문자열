@@ -1,0 +1,23 @@
+"""
+맞왜틀???
+이어서 풀어보자...
+"""
+
+
+t=int(input())
+result=[]
+for i in range(t):
+	n=int(input())
+	data=list(input().split())
+	semi_data=[data[0]]
+	
+	for i in range(1,n):
+		if data[i]<data[0]:
+			semi_data.insert(0,data[i])
+		else:
+			semi_data.append(data[i])
+	result.append(semi_data)
+
+for i in range(t):
+	print(''.join(result[i]))
+

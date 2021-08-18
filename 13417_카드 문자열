@@ -1,0 +1,19 @@
+t=int(input())
+result=[]
+for i in range(t):
+	n=int(input())
+	data=list(input().split())
+	semi_data=[data[0]]
+	
+	for i in range(1,n):
+		if data[i]<=semi_data[0]:
+    #data[i]<=semi_data[0]를 data[i]<=data[0]라고 제출, data[0]은 고정되어있으므로 오답
+    #data[i]<=semi_data[0]를 data[i]<semi_data[0]라고 제출, a가 semi_data[0]일 때 추가되는 a가 뒤로 가므로 오답
+			semi_data.insert(0,data[i])
+		else:
+			semi_data.append(data[i])
+	result.append(semi_data)
+
+for i in range(t):
+	print(''.join(result[i]))
+

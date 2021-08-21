@@ -1,0 +1,112 @@
+"""
+맞왜틀...
+t=int(input())
+for _ in range(t):
+	x, y=map(int, input().split())
+	d=y-x
+	if d==1:
+		print(1)
+	elif d==2:
+		print(2)
+	else:
+		
+		if d%2==0:
+			d=d//2
+		else:
+			d=d//2+1
+		n=1
+		while True:
+			check=n*(n+1)//2
+
+			if check==d:
+				print(n*2)
+				break
+			elif check>d:
+				print(n*2-1)
+				break
+			n+=1
+
+결과: 오답
+반례 찾을 수 없음
+
+
+
+2번 방법
+1 2 33 44 555 666 7777 8888 임을 이용,
+처음엔 한칸씩 한번, 두번
+다음엔 두칸씩 한번, 두번
+그리고 세칸씩 한번, 세번 ... 달성할때마다 카운트 증가,
+한번 달성시 카운트는 ans값, 두번 달성시 카운트는 even값(n번의 n을 증가시킴)
+
+t=int(input())
+for _ in range(t):
+	x, y = map(int, input().split())
+	d=y-x
+	htm=1
+	mem=0
+	even=0
+	ans=1
+	check=0
+	for i in range(d):
+		check+=1
+		mem+=1
+		if mem==htm:
+			even+=1
+			mem=0
+			ans+=1
+			check=0
+			if even==2:
+				htm+=1
+				even=0
+	if check==0:
+		ans-=1
+	print(ans)
+  
+결과: 시간초과
+"""
+
+#답 참고
+
+t=int(input())
+for _ in range(t):
+	x, y = map(int, input().split())
+	d=y-x
+	count=0 #이동 횟수: 답
+	move=1 #count별 이동해야 하는 거리
+	move_dis=0 #총 이동 거리
+
+	while move_dis<d:
+		count+=1
+		move_dis+=move
+		if count%2==0:
+			move+=1
+	print(count)
+  
+"""
+위의 참고한 답을 해석해보자면,
+d   count   move
+1   1       1
+2   2       1
+3   3       
+4   3       2
+5   4       
+6   4       2
+7   5       
+8   5
+9   5       3
+10  6
+11  6
+12  6       3
+13  7
+14  7
+...
+에서, 우리는 d값에 따른 정답 count를 출력해야 한다.
+이 때, count는 각각 2, 4, 6, 8, ... 즉 짝수가 될때마다 이동거리 move는 +1씩 증가한다.
+여기서 제한조건은 
+"임시의 총 이동거리 move_dis라는 변수를 이용하여 move_dis가 d보다 작아지는 경우가 될때까지"
+count와 move를 증가시키고,
+정답인 count를 출력하면 풀리는 문제이다.
+
+이 문제는 제한 시간이 매우 짧고 d의 범위가 매우 크므로 시간 복잡도는 O(n)이 되어야 한다는 점을 먼저 알고 접근해야 다.
+"""
+

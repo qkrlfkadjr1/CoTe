@@ -1,0 +1,22 @@
+from itertools import combinations
+
+n,m=map(int,input().split())
+a=list(map(int,input().split()))
+b=list(combinations(a,3))
+c=[]
+for i in range(len(b)):
+	c.append(sum(b[i]))
+c.sort()
+for i in range(len(c)):
+	if c[i]>m:
+		print(c[i-1])
+		break
+	if c[-1]<m:
+		print(c[-1])
+		break
+    
+"""
+조합과 브루트 포스를 활용하는 간단한 문제였다.
+첫 시도에 맞왜틀이 발생했는데,
+모든 조합이 a보다 작은 경우에는 아예 값이 출력되지 않는 허점이 있었다.
+"""

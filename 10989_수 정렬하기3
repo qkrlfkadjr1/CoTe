@@ -1,0 +1,16 @@
+import sys
+n=int(input())
+data=[0]*10001
+for i in range(n):
+	mem=int(sys.stdin.readline())
+	data[mem]+=1
+for i in range(10001):
+	if data[i]!=0:
+		for j in range(data[i]):
+			print(i)
+      
+"""
+메모리가 극히 제한된 문제
+수를 리스트에 받아서 정렬해서 출력하면 메모리 초과
+수가 들어올때마다 카운팅해서 해당 인덱스를 출력
+"""

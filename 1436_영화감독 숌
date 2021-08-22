@@ -1,0 +1,15 @@
+data=[]
+for i in range(3000000):
+	a=str(i)
+	count=0
+	if '666' in a:
+		data.append(i)
+
+n=int(input())
+print(data[n-1])
+
+"""
+조건을 '6이 3개 이상 들어가는 수'로 착각,
+실제로는 '6이 연속으로 3개 이상 들어가는 수' 였음
+런타임 오류는 i의 범위 때문이며, i를 늘림으로 
+"""

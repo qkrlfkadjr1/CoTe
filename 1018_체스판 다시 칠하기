@@ -1,0 +1,40 @@
+ans1=['WBWBWBWB','BWBWBWBW','WBWBWBWB','BWBWBWBW','WBWBWBWB','BWBWBWBW','WBWBWBWB','BWBWBWBW']
+ans2=['BWBWBWBW','WBWBWBWB','BWBWBWBW','WBWBWBWB','BWBWBWBW','WBWBWBWB','BWBWBWBW','WBWBWBWB']
+n,m=map(int,input().split())
+a=[]
+answer=[]
+for i in range(n):
+	a.append(input())
+for i in range(0,m-7):
+	for j in range(0,n-7):
+		b=[]
+		for k in range(8):
+			b.append(a[j+k][i:i+8])
+		count=0
+		for d in range(8):
+			for e in range(8):
+				if ans2[e][d]!=b[e][d]:
+					count+=1
+		answer.append(count)
+		count=0
+		for d in range(8):
+			for e in range(8):
+				if ans1[e][d]!=b[e][d]:
+					count+=1
+		answer.append(count)
+
+print(min(answer))
+
+"""
+문제의 아이디어는,
+비교할 두가지의 모범 체스판 답안 8x8과,
+전체 크기중 8x8로 자를 수 있는 모든 경우의 수에 대하여
+각 줄마다 다른 부분을 비교하여 카운팅하고,
+최솟값을 출력한다.
+
+틀린 이유 1)
+각 체스판의 [0][0]이 B일때와 W일때를 기준으로 먼저 맞춰놓고 비교를 함
+- [0][0]만 틀리고 나머지는 다 맞는 체스판의 경우 최솟값인 1이 나와야하지만 오히려 63이 나오게 됨. 따라서 실패
+틀린 이유 2)
+위의 경우를 보완할 때 ans1과 ans2 사이에 카운팅 초기화를 하지 않음
+"""

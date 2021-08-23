@@ -1,0 +1,32 @@
+from collections import Counter
+n=int(input())
+a=[]
+for i in range(n):
+	a.append(int(input()))
+a.sort()
+if n==1:
+	print(a[0])
+	print(a[0])
+	print(a[0])
+	print(0)
+
+else:
+	avg=round(sum(a)/n)
+	mid=a[n//2]
+	cnt=Counter(a)
+	mc_cnt=cnt.most_common()
+	ran=max(a)-min(a)
+	print(avg)
+	print(mid)
+	if mc_cnt[0][1]==mc_cnt[1][1]:
+		print(mc_cnt[1][0])
+	else:
+		print(mc_cnt[0][0])
+	print(ran)
+  
+"""
+최빈값을 구하기 위해서는 collections의 Counter를 활용해야함
+수 차례 시도가 필요했는데,
+n==1일때와 나머지일때를 구분해야하고,
+최빈값이 한개가 아닐 경우를 분리해야한다.
+"""

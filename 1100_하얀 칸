@@ -1,0 +1,31 @@
+import sys
+input=sys.stdin.readline
+ans=0
+a=[]
+for i in range(8):
+	a.append(input())
+print(a)
+for i in range(8):
+	count=0
+	if i%2==0:
+		for x in a[i]:
+			if count%2==0 and x=='F':
+				ans+=1
+			count+=1
+			if count==8:
+				break
+	elif i%2==1:
+		for x in a[i]:
+			if count%2==1 and x=='F':
+				ans+=1
+			count+=1
+			if count==8:
+				break
+print(ans)
+
+
+"""
+알고리즘은 애초에 맞았는데,
+8X8 체스판이지만 입력값이 8을 초과할 수도 있음을 고려해야 정답처리가 남.
+이에 따라 count가 8이상이 되면 break하게 만들어 해결함
+"""

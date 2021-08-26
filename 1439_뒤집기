@@ -1,0 +1,23 @@
+s=input()
+a=[]
+count_0to1=0
+count_1to0=0
+for x in s:
+	a.append(x)
+if a[0]=='0':
+	count_1to0+=1
+elif a[0]=='1':
+	count_0to1+=1
+for i in range(len(a)-1):
+	if a[i]=='0' and a[i+1]=='1':
+		count_0to1+=1
+	elif a[i]=='1' and a[i+1]=='0':
+		count_1to0+=1
+print(min(count_0to1, count_1to0))
+
+
+"""
+0에서 1로, 1에서 0으로 바뀌는 경우를 각각 카운팅해서 최솟값을 출력하면 정답,
+이 때 주의할 점은 맨 처음이 0인 경우는 사실상 1에서 0으로 변하면서 시작한 것과 마찬가지이므로 1에서 0으로 바뀌는 카운팅에 +1을 해야 한다.
+물론 반대 경우도 마찬가지이다.
+"""

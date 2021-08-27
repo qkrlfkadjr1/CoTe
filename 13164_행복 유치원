@@ -1,0 +1,19 @@
+n, k=map(int,input().split())
+a=list(map(int, input().split()))
+diff=[]
+for i in range(len(a)-1):
+	diff.append(a[i+1]-a[i])
+diff.sort()
+
+d=n-k
+ans=0
+for i in range(d):
+	ans+=diff[i]
+print(ans)
+
+"""
+조 짜임 경우의 수를 모두 구해서, 모든 차이를 구해서 최솟값을 구하는 경우는 구현이 몹시 힘들다.
+생각해낸 알고리즘은 입력받은 n에 대해서 각각의 이웃한 수들의 차를 구해서 리스트에 넣고,
+n-k만큼의 개수 만큼 차이를 무시할 수 있다는 점이다.
+직관적으로 들었던 생각이었지만, 직접 테스트 케이스를 만들어 머릿속으로 굴려보니까 옳았다.
+"""

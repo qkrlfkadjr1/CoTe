@@ -1,0 +1,49 @@
+s=list(map(str, input()))
+t=list(map(str, input()))
+while True:
+	if t==s:
+		print(1)
+		break
+	if len(t)<len(s):
+		print(0)
+		break	
+	if t!=s:
+		if t[-1]=='B':
+			t.pop()
+			t=t[::-1]
+		elif t[-1]=='A':
+			t.pop()
+		else:
+			if t==s:
+				print(1)
+				break
+			else:
+				print(0)
+				break
+
+
+"""
+s에서 t를 만들 수 있는 모든 경우의 수를 구하는 방법은 구현하기 힘들며 시간제한에 걸림
+반대로 t에서 s로 만드는 경우는 매우 간단해짐
+
+
+*주어지는 s,t가 꼭 A,B로만 이루어져 있다는 조건은 없음
+
+
+
+s=list(input())
+t=list(input())
+while True:
+	if t==s:
+		print(1)
+		break
+	if t!=s:
+		if t[-1]=='B':
+			t.pop()
+			t=t[::-1]
+		if t[-1]=='A':
+			t.pop()
+		if len(t)<len(s):
+			print(0)
+			break
+"""

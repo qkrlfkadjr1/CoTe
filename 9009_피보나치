@@ -1,0 +1,50 @@
+
+"""
+생각해낸 문제풀이 알고리즘 자체는 정답에 근접하다.
+범위 내의 피보나치 수들을 리스트에 먼저 담아두고, 주어진 수에 가장 가까운, 
+즉 가장 큰 피보나치 수를 계속해서 빼나가며 피보나치 수를 출력하는 것이다.
+그러나 피보나치의 경우 재귀함수를 통해 매번 구할 때 그 시간복잡도가 말도 안될정도로 크기 때문에,
+함수를 통해 피보나치 수를 구해서 더하는 것이 아닌,
+리스트에 바로 넣어버리는 방법을 통해 시간을 단축한다.
+틀렸던 코드는 다음과 같다.
+def fibo(n):
+	if n==0:
+		return 0
+	elif n==1:
+		return 1
+	else:
+		return fibo(n-1)+fibo(n-2)
+fib=[]
+i=0
+while True:
+	if fibo(i)>1000000000:
+		break
+	fib.append(fibo(i))
+	i+=1
+
+print(fib)
+
+
+이후에도 막힌 구간이 있었는데, 현재 n보다 작으면서도 가장 큰 피보나치 수를 뺴는 과정에서 
+피보나치 수를 리스트에서 0부터 45까지 찾아서 빼는 것은 매우 비효율적이며 실제로 컴파일러가 에러가 난다.
+따라서 45부터 0까지 줄여나가면서 처리하면 단 한번의 for문으로 끝낼 수 있다.
+정답처리가 된 코드는 다음과 같다.
+"""
+fib=[0,1]
+for i in range(2,45):
+	fib.append(fib[i-1]+fib[i-2])
+
+t=int(input())
+
+for i in range(t):
+	n=int(input())
+	ans=[]
+	for i in range(44,-1,-1):
+		if fib[i]<=n:
+			ans.append(fib[i])
+			n-=fib[i]
+		if n==0:
+			ans.sort()
+			for i in range(len(ans)):
+				print(ans[i], end=" ")
+			break

@@ -1,0 +1,23 @@
+l,r=(map(str,input().split()))
+count=0
+if len(l)!=len(r):
+	print(0)
+else:
+	list_l=[]
+	list_r=[]
+	for x in l:
+		list_l.append(x)
+	for y in r:
+		list_r.append(y)
+	for i in range(len(list_l)):
+		if list_l[i]==list_r[i]=='8':
+			count+=1
+		else:
+			break
+	print(count)
+  
+  
+  """
+  list_l[i]==list_r[i]=='8'이라 하면 틀림
+  보충
+  """

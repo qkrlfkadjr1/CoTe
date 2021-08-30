@@ -1,0 +1,29 @@
+"""
+신입사원의 1차, 2차 점수가 주어졌을 때
+1차 점수를 기준으로 오름차순 하면
+1차 점수에 따른 등수로 순위가 매겨지고,
+이미 1차 점수는 판가름 났으므로 2차 점수로만 판단하면 된다.
+이 때, i+1은 i번째보다 무조건 1차 등수가 낮으므로
+2차마저 낮으면 탈락한다.
+따라서 i+1번쨰의 [1]이 가장 높은 친구를 기준으로 (min값을 갱신해주는 것이 포인트다.)
+그것보다 더 낮은 사람들이 나오면 count를 1씩 뺀다.
+오로지 내 힘으로 풀어낸 문제이다.
+"""
+import sys
+input=sys.stdin.readline
+
+t=int(input())
+for _ in range(t):
+	n=int(input())
+	count=n
+	data=[]
+	for i in range(n):
+		data.append(list(map(int,input().split())))
+	data=sorted(data, key=lambda x:x[0])
+	min=data[0][1]
+	for i in range(n-1):
+		if data[i+1][1]>min:
+			count-=1
+		elif data[i+1][1]<min:
+			min=data[i+1][1]
+	print(count)

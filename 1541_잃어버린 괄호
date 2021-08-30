@@ -1,0 +1,38 @@
+a=input().split('-')
+if a[0]=='':
+	equation=a[0].split('+')
+	sum=0
+	for x in equation:
+		sum+=x
+	ans=-sum
+
+	for i in range(1,len(a)):
+		equation=a[i].split('+')
+		sum=0
+		for x in equation:
+			sum+=x
+		ans-=sum
+else:
+	equation=a[0].split('+')
+	sum=0
+	for x in equation:
+		sum+=int(x)
+	ans=sum
+
+	for i in range(1,len(a)):
+		equation=a[i].split('+')
+		sum=0
+		for x in equation:
+			sum+=int(x)
+		ans-=sum
+
+print(ans)
+
+"""
+괄호를 통해 최소를 만드는 알고리즘은, -뒤의 수를 최대한 크게 만드는 것이다.
+더 자세하게 표현하자면, 수식을 -마다 분해하여서, -뒤의 +수식이 올경우에는 수를 더하여 빼는 수를 크게 만드는 것을 반복하는 것이다.
+알고리즘을 참고하여 풀었기 때문에 온전히 고민해서 풀었으면 더욱 좋았지 않을까 아쉬움이 든다.
+
++) 반대로 최대로 만드는 경우를 생각해 보았을 때는, 빼는 수가 작아질수록 가장 클 것으로 생각이 든다.
+즉, -뒤에 -가 올 경우 괄호로 묶고, 그 다음 처음으로 +가 올 경우에 괄호를 닫는 알고리즘이라면 정답이 될 것 같다.
+"""

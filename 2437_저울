@@ -1,0 +1,52 @@
+"""
+이코테 책에서 관련 알고리즘을 헤매고 또 헤매다가 끝내 이해했음에도 불구하고, 백준에서 마주치니 같은 알고리즘이라는 것을 깨닫지 못함.
+첫 시도 알고리즘은 저울추로 만들 수 있는 모든 조합을 구하고 그 합을 리스트에 저장하여, 처음으로 비는 수를 출력하는 것이었으며,
+당연하게도 메모리 초과가 나타났다.
+관련 코드는 다음과 같다.
+from itertools import combinations
+n=int(input())
+a=[]
+a=list(map(int, input().split()))
+a.sort()
+data=[]
+for i in range(n):
+	comb=list(combinations(a, i))
+	for i in range(len(comb)):
+		data.append(sum(comb[i]))
+
+
+
+data=list(set(data))
+for i in range(1000000000):
+	if i not in data:
+		print(i)
+		break
+    
+
+
+이 문제를 푸는 알고리즘은 다음과 같다.
+어떤 수 X에 대해서 0부터 X까지의 모든 수를 추로 표현할 수 있다면,
+a[i]라는 추를 이용해서 a[i]부터 X+a[i]까지의 모든 수 또한 표현할 수 있다.
+이에 더해서 a[i+1]이라는 추를 이용해서 a[i+1]부터 X+a[i]+a[i+1]까지의 수를 모두 표현할 수 있다.
+여기서 중점으로 봐야할 것은, 만약 a[i]가 X보다 큰 수라면 X와 a[i]사이의 수가 비게 된다. 따라서 표현할 수 없는 수를 구할 수 있다.
+
+알고리즘만 생각해낼 수 있다면 구현은 1분안에 표현할 수 있을 정도로 간단하다.
++)예외 사항: 추의 총합 범위의 모든 수가 표현 가능하면 총합+1을 출력해야 함
+"""
+
+
+n=int(input())
+a=list(map(int, input().split()))
+a.sort()
+X=1
+for i in range(n):
+	if a[i]>X:
+		print(X)
+		break
+	else:
+		X=X+a[i]
+	if i==n-1:
+		print(sum(a)+1)
+		break
+
+

@@ -1,0 +1,38 @@
+"""
+알고리즘은 떠올렸으나, heapq가 아직 익숙치 못해 구현중 연등시간이 거의 끝남
+지금 생각중인 알고리즘은, heap에 입력받은 수들을 모두 넣고,
+작은 수들부터 줄여나가면서 그 둘의 합을 구해서 sum에 더하고, 그 합을 또 heap에 넣는다.
+끝날떄까지 반복하는데, 끝나는 경우는 heap이 비는 경우라 생각했지만 index오류가남
+
+import heapq
+n=int(input())
+data=[]
+for i in range(n):
+	data.append(int(input()))
+data.sort()
+c=[]
+for i in range(n):
+	heapq.heappush(c, data[i])
+sum=0
+
+while True:
+	value=0
+	if c is False:
+		break
+	value+=heapq.heappop(c)
+	print(value)
+	print(c)
+	if c is False:
+		break
+	value+=heapq.heappop(c)
+	print(value)
+	print(c)
+	sum+=value
+	heapq.heappush(c,value)
+	if c is False:
+		break
+
+print(sum)
+
+
+"""

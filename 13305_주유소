@@ -1,0 +1,19 @@
+n=int(input())
+length=list(map(int,input().split()))
+cost=list(map(int,input().split()))
+min_val=cost[0]
+ans=0
+for i in range(n-1):
+	ans+=min_val*length[i]
+	if min_val>cost[i+1]:
+		min_val=cost[i+1]
+print(ans)
+
+
+"""
+5분안에 해결, 참고X
+
+더 싼 주유소가 나타날 때 까지, 기름값이 가장 싼 주유소에서 최대한 많이 사서 가야 한다.
+이를 코드로 표현한 부분은 min_val이 cost[i+1]보다 커졌을 경우에 min_val=cost[i+1]로 바꾸는 8~9번 줄이다.
+
+"""

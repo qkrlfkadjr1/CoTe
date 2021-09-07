@@ -1,0 +1,19 @@
+n,l=map(int,input().split())
+data=list(map(int,input().split()))
+data.sort()
+start=data[0]
+end=data[0]+l
+ans=1
+for i in range(n):
+    if start<=data[i]<end:
+        continue
+    else:
+        start=data[i]
+        end=data[i]+l
+        ans+=1
+print(ans)
+
+"""
+처음 제출한 알고리즘과 비슷하면서도 다름,
+내일 이어서 
+"""

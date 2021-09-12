@@ -1,0 +1,25 @@
+"""
+문제 푸는 알고리즘 자체는 맞는 듯 하나, 시간 초과가 뜬다.
+다른 이의 코드를 참고해 보았는데 한 눈에 이해되지 않았으므로, 다음에 다시 풀어보기로 했다.
+
+시간초과된 코드는 다음과 같다.
+n,k=map(int,input().split())
+a=str(input())
+data=[]
+for x in a:
+	data.append(int(x))
+i=0
+while True:
+	if k==0:
+		break
+	if data[i]<data[i+1]:
+		data.remove(data[i])
+		k-=1
+		i=0
+	else:
+		i+=1
+		if i>=len(data)-1:
+			break
+for i in data:
+	print(i, end="")
+"""

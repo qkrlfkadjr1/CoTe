@@ -1,0 +1,31 @@
+"""
+참고없이 스스로 결국 풀어낸 문제
+최소한의 강의실만을 이용하여 모든 강의를 진행하려 할 때, 강의실 수를 구하는 문제이다.
+문제 조건은 즉, 앞 타임 강의가 끝나면 그 강의실에서 다음 타임 강의를 할 수 있다는 것이다.
+
+이 문제를 해결하기 위해 우선순위 큐 (heapq)를 사용했다.
+주어진 입력은 시작시간과 끝시간으로 이루어져있다.
+시작시간 오름차순으로 정렬했을 때, 각각의 시작시간이 가장빨리 끝나는 끝시간보다 늦게 된다면 강의실 수를 하나 줄일 수 있다.
+이에 따라서, 끝시간을 우선순위로 가지는 heap을 하나 만든 후, 
+위의 조건에 해당하게 되면 해당 끝시간을 pop해버리는 과정을 반복함으로 이 문제를 해결할 수 있다.
+"""
+import heapq
+import sys
+input=sys.stdin.readline
+n=int(input())
+data=[]
+count=0
+for _ in range(n):
+	a=list(map(int, input().split()))
+	a[0], a[1] = a[1], a[0]
+
+	heapq.heappush(data,a)
+sortdata=sorted(data, key=lambda x:x[1])
+
+for i in range(1,n):
+	start_time=data[0][1]
+	end_time=data[0][0]
+	if sortdata[i][1]>=end_time:
+		count+=1
+		a=heapq.heappop(data)
+print(len(data))

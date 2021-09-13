@@ -1,0 +1,20 @@
+"""
+동일한 알고리즘 문제를 푼 적이 있음
+heapq를 이용
+"""
+
+import heapq
+t=int(input())
+for _ in range(t):
+	n=int(input())
+	a=list(map(int, input().split()))
+	a.sort()
+	heapq.heapify(a)
+	ans=0
+	while(len(a)>1):
+		sum=0
+		sum+=heapq.heappop(a)
+		sum+=heapq.heappop(a)
+		ans+=sum
+		heapq.heappush(a,sum)
+	print(ans)

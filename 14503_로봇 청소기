@@ -1,0 +1,50 @@
+"""
+이코테 chapter4 예제 게임 개발과 동일한 문제이다. 
+방향 설정 테크닉이 중요하며, 지형 리스트와 방문여부 리스트를 따로 만들어서 두 리스트를 동시에 검증하며 이어나가야 한다.
+"""
+
+n,m=map(int,input().split())
+x,y,direction=map(int,input().split())
+floor=[]
+for _ in range(n):
+	floor.append(list(map(int,input().split())))
+#x가 행, y가 열
+# 북 동 남 서
+dx=[-1,0,1,0]
+dy=[0,1,0,-1]
+
+check=[[0]*m for _ in range(n)]
+check[x][y]=1
+
+def turn_left():
+	global direction #전역 변수로 지정해야 한다.
+	direction-=1
+	if direction==-1:
+		direction=3
+
+
+count=1
+turn_time=0
+while True:
+	turn_left()
+	nx=x+dx[direction]
+	ny=y+dy[direction]
+	if check[nx][ny]==0 and floor[nx][ny]==0:
+		check[nx][ny]=1
+		x=nx
+		y=ny
+		count+=1
+		turn_time=0
+		continue
+	else:
+		turn_time+=1
+	if turn_time==4:
+		nx=x-dx[direction]
+		ny=y-dy[direction]
+		if floor[nx][ny]==0:
+			x=nx
+			y=ny
+			turn_time=0
+		else:
+			break
+print(count)

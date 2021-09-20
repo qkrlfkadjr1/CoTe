@@ -1,0 +1,35 @@
+"""
+단방향으로는 풀 수 없다.
+양방향으로 풀어야 함
+예시) 친구 관계가 1 7, 3 7인 경우
+7번은 1번의 친구이므로 카운트되지만, 3 7의 경우 3은 1의 친구의 친구이므로
+카운트되어야 하지만 단방향으로 하면 3은 1과 관계없는 사람으로 취급하여 오답이 된다.
+"""
+
+n=int(input())
+m=int(input())
+data=[]
+friend=[1]
+for _ in range(m):
+	data.append(list(map(int,input().split())))
+
+for i in range(m):
+	if data[i][0]==1:
+		friend.append(data[i][1])
+
+neighbor=[]
+
+for i in range(m):	#여기까지만 했을 때는 단방향
+	if data[i][0] in friend:
+		if data[i][1] not in friend:
+			neighbor.append(data[i][1])
+
+for i in range(m):	#양방향의 완성
+	if data[i][1] in friend:
+		if data[i][0] not in friend:
+			neighbor.append(data[i][0])
+
+
+friend=list(set(friend))
+neighbor=list(set(neighbor))
+print(len(friend)+len(neighbor)-1)

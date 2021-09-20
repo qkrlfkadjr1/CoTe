@@ -1,0 +1,40 @@
+"""
+골드5 난이도에 정답률도 43%지만, 여전히 구현 문제는 익숙치 않은 탓인지 혼자 힘으로 풀기 버거웠다.
+한달 전 구입한 이코테 책에 동일한 문제가 수록되어있어 큰 도움이 되었다.
+
+
+먼저 문제를 완전탐색으로 풀 수 있는지 고려해보자.
+전체 치킨집 중 최대 m개만 남겨야 한다.
+치킨집은 많으면 많을 수록 치킨 거리를 최소화 하는데 유리하므로, m개보다 적게 남기는 경우는 고려하지 않는다.
+문제에서 주어진 치킨집의 범위는 m<=치킨집<=13이다.
+치킨집이 최대값인 13개가 있고, 이 중에서 m개의 치킨집을 고르는 모든 조합의 가짓수는 10만보다 작고, 집의 개수의 최대값은 100이므로 완전탐색이 가능하다.
+"""
+from itertools import combinations #조합 활용
+n,m=map(int,input().split())
+chicken=[]
+house=[]
+for r in range(n):
+	data=list(map(int,input().split()))
+	for c in range(n):
+		if data[c]==1:
+			house.append((r,c)) #집 좌표를 저장해놓는다.
+		elif data[c]==2:
+			chicken.append((r,c)) #치킨집 좌표를 저장해놓는다.
+
+#모든 치킨집 중 m개의 치킨집을 뽑는 조합
+cases=list(combinations(chicken,m))
+
+def get_sum(case): #주어진 치킨집 조합에 대한 치킨 거리 구하기
+	result=0
+	for hx,hy in house:
+		temp=1e9
+		for cx,cy in case:
+			temp=min(temp, abs(hx-cx)+abs(hy-cy))
+		result+=temp
+	return result
+
+result=1e9
+for case in cases: #모든 치킨집 조합에 대해 최소의 치킨 거리 구하기
+	result=min(result,get_sum(case))
+
+print(result)

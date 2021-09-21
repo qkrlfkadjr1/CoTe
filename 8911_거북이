@@ -1,0 +1,43 @@
+"""
+좌표 구현계의 기본문제로 보인다.
+전진, 후진, 방향 전환에 대한 코드를 구현한 후 방문 지점의 좌표를 구해 해당 좌표중 최대 최소 x,y값을 구하여 직사각형의 넓이를 구하였다.
+"""
+
+t=int(input())
+for _ in range(t):
+	direction=0 #북,동,남,서
+	dx=[0,1,0,-1]
+	dy=[1,0,-1,0]
+	check=[(0,0)]
+	x=0
+	y=0
+	a=input()
+	for b in a:
+		if b=='F':
+			x+=dx[direction]
+			y+=dy[direction]
+		
+			check.append([x,y])				
+		elif b=='B':
+			x-=dx[direction]
+			y-=dy[direction]
+			check.append([x,y])		
+		elif b=='L':
+			direction-=1
+			if direction==-1:
+				direction=3
+		elif b=='R':
+			direction+=1
+			if direction==4:
+				direction=0
+	mxcheck=sorted(check, key=lambda x:x[0])
+	mx=mxcheck[0][0]
+	Mxcheck=list(reversed(mxcheck))
+	Mx=Mxcheck[0][0]
+	mycheck=sorted(check, key=lambda x:x[1])
+	my=mycheck[0][1]
+	Mycheck=list(reversed(mycheck))
+	My=Mycheck[0][1]
+
+	ans=((Mx-mx)*(My-my))
+	print(ans)

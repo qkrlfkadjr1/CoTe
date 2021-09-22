@@ -1,0 +1,28 @@
+"""
+피보나치 수열처럼 함수를 만들어 푸는 것이 첫 시도였다.
+결과는 시간초과였다.
+피보나치 수열의 시간초과문제처럼 매 계산 과정을 리스트에 지정해두는 방식을 고려해보려 했으나, 방식이 쉽게 떠오르지 않았다.
+오히려 쉽게 생각해본 결과, 함수의 틀에서 벗어나 미리 문제의 범위 n<=100까지 답을 리스트에 다 구해놓고 값만 넣어 구하는 방식으로 해결하였다.
+"""
+
+data=[0]*101
+for n in range(1,101):
+	if n==1:
+		data[n]=1
+	elif n==2:
+		data[n]=1
+	elif n==3:
+		data[n]=1
+	elif n==4:
+		data[n]=2
+	elif n==5:
+		data[n]=2
+	elif n==6:
+		data[n]=3
+	else:
+		data[n]=data[n-1]+data[n-5]
+
+t=int(input())
+for _ in range(t):
+	a=int(input())
+	print(data[a])

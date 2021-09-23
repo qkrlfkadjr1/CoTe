@@ -1,0 +1,24 @@
+"""
+여는 괄호가 올때는 +1을, 닫는 괄호가 올때는 -1을 한다.
+중간에 합이 음수가 되는 순간 닫는괄호가 더 많다는 뜻이므로 조건에 어긋난다.
+최종적으로 합이 0이고, 중간값이 항상 0이상일 경우 통과한다.
++1과 -1, 그리고 음수가 되면 조건실패라는 점이 포인트다.
+"""
+
+n=int(input())
+for _ in range(n):
+	continuer=False
+	sum=0
+	a=list(input())
+	for i in a:
+		if i=='(':
+			sum+=1
+		elif i==')':
+			sum-=1
+		if sum<0:
+			print('NO')
+			break
+	if sum==0:
+		print('YES')
+	elif sum>0:
+		print('NO')
